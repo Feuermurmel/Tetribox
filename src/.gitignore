@@ -1,1 +1,2 @@
-/pieces.asy
+*.asy
+!_*.asy

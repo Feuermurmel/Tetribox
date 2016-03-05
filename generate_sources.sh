@@ -18,6 +18,34 @@ function generate_file() {
 	fi
 }
 
+join() {
+	res="$2"
+	
+	for i in "${@:3}"; do
+		res="$res$1$i"
+	done
+	
+	echo "$res"
+}
+
+piece() {
+	echo "import _$1;"
+	echo "$1($(join ', ' "${@:2}"));"
+}
+
+generate_piece() {
+	generate_file "src/$(join "${@:1}").asy" piece "${@:1}"
+}
+
+for i in {1..15}; do
+	generate_file src/divider-$i.asy piece divider $i
+	generate_file src/side-$i.asy piece side $i
+	
+	for j in {1..15}; do
+		generate_file src/base-$i-$j.asy piece base $i $j
+	done
+done
+
 # Call generate_file for each file to be generated.
 # E.g.:
 # generate_file src/test.scad echo "cube();"
