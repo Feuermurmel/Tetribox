@@ -28,18 +28,18 @@ void base(int sizex, int sizey) {
 		for (int ix : range(1, sizex)) {
 			tetribox.Piece p = tetribox.Piece();
 			
-			p.add(grid = (ix, iy), height = 0, wood = (0, 0), hstud = (0, 0), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (0, .5), hstud = (0, -.5), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (1, .5), hstud = (0, -.5), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (1, 0), hstud = (0, 0), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (.5, 0), hstud = (.5, 0), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (.5, 1), hstud = (.5, 0), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (1, 1), hstud = (0, 0), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (1, .5), hstud = (0, .5), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (0, .5), hstud = (0, .5), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (0, 1), hstud = (0, 0), vstud = 0, slot_gap = 0);
-			p.add(grid = (ix, iy), height = 0, wood = (.5, 1), hstud = (-.5, 0), vstud = 0, slot_gap = 0);
 			p.add(grid = (ix, iy), height = 0, wood = (.5, 0), hstud = (-.5, 0), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (.5, 1), hstud = (-.5, 0), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (0, 1), hstud = (0, 0), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (0, .5), hstud = (0, .5), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (1, .5), hstud = (0, .5), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (1, 1), hstud = (0, 0), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (.5, 1), hstud = (.5, 0), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (.5, 0), hstud = (.5, 0), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (1, 0), hstud = (0, 0), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (1, .5), hstud = (0, -.5), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (0, .5), hstud = (0, -.5), vstud = 0, slot_gap = 0);
+			p.add(grid = (ix, iy), height = 0, wood = (0, 0), hstud = (0, 0), vstud = 0, slot_gap = 0);
 			
 			p.p = tetribox.offset_path(p.p -- cycle, settings.slot_gap);
 			

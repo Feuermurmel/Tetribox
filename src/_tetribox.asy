@@ -48,8 +48,49 @@ path offset_path(path p, real o) {
 }
 
 
-path fix_corners(path p) {
-	return p;
+path fix_corners(path p, real convex_radius) {
+	import geometry;
+	
+	path res;
+	
+	for (int i : range(0, size(p))) {
+		pair a = point(p, i - 1);
+		pair b = point(p, i);
+		pair c = point(p, i + 1);
+		
+		path new_points;
+		
+		if (a == b) {
+			if (b != c) {
+				new_points = b;
+			}
+		} else {
+			if (b == c) {
+				new_points = b;
+			} else {
+				line l1 = line(a, b);
+				line l2 = line(b, c);
+				
+				pair new_point_1 = l1.B - l1.u * convex_radius;
+				pair new_point_2 = l2.A + l2.u * convex_radius;
+				real angle = modulo(angle(l2.u) - angle(l1.u), 2 * pi);
+				
+				if (angle < pi) {
+					new_points = new_point_1 {l1.u} .. {l2.u} new_point_2;
+				} else {
+					new_points = b;
+				}
+			}
+		}
+		
+		res = res -- new_points;
+	}
+	
+	if (cyclic(p)) {
+		res = res -- cycle;
+	}
+	
+	return res;
 }
 
 
@@ -64,7 +105,15 @@ struct Piece {
 	}
 	
 	void output() {
-		draw(fix_corners(offset_path(this.p -- cycle, settings.laser_offset)), settings.cut_pen);
+		path p = this.p;
+		
+		if (!cyclic(p)) {
+			p = p -- cycle;
+		}
+		
+		p = fix_corners(offset_path(p, settings.laser_offset), settings.convex_corner_radius);
+		
+		draw(p, settings.cut_pen);
 	}
 }
 

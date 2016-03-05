@@ -16,4 +16,6 @@ real laser_offset = .05mm;
 // Removed between sides.
 real slot_gap = .1mm;
 
+real convex_corner_radius = 0.5;
+
 pen cut_pen = .01mm + blue;
