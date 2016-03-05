@@ -19,3 +19,7 @@ int[] reverse(int[] a) {
 	
 	return res;
 }
+
+real modulo(real x, real m) {
+	return x - floor(x / m) * m;
+}
