@@ -41,7 +41,7 @@ void base(int sizex, int sizey) {
 			p.add(grid = (ix, iy), height = 0, wood = (0, .5), hstud = (0, -.5), vstud = 0, slot_gap = 0);
 			p.add(grid = (ix, iy), height = 0, wood = (0, 0), hstud = (0, 0), vstud = 0, slot_gap = 0);
 			
-			p.p = tetribox.offset_path(p.p -- cycle, settings.slot_gap);
+			p.p = tetribox.offset_path(p.p -- cycle, -settings.slot_gap);
 			
 			p.output();
 		}
