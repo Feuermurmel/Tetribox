@@ -33,13 +33,17 @@ piece() {
 	echo "$1($(join ', ' "${@:2}"));"
 }
 
-generate_piece() {
-	generate_file "src/$(join "${@:1}").asy" piece "${@:1}"
-}
-
 for i in {1..15}; do
 	generate_file src/divider-$i.asy piece divider $i
-	generate_file src/side-$i.asy piece side $i
+	
+	for j in 1 2; do
+		if [ $[j % 2] -eq 0 ]; then
+			generate_file src/side-$i.asy piece side $i 0
+		else
+			generate_file src/side-$i-a.asy piece side $i 0
+			generate_file src/side-$i-b.asy piece side $i 1
+		fi
+	done
 	
 	for j in {1..15}; do
 		if [ $j -le $i ]; then
