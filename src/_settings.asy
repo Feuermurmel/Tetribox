@@ -1,7 +1,7 @@
 real grid_size = 30mm;
-real height = 40mm;
+real height = 50mm;
 
-int vertical_fingers = 5;
+int vertical_fingers = 7;
 
 // This better be an even number!
 int horizontal_fingers_per_grid = 4;
