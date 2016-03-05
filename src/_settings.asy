@@ -17,6 +17,6 @@ real laser_offset = .05mm;
 real slot_gap = .1mm;
 
 real convex_corner_radius = 0.5mm;
-real concave_corner_radius = 0.1mm;
+real concave_corner_radius = 0.2mm;
 
 pen cut_pen = .01mm + blue;
