@@ -42,7 +42,9 @@ for i in {1..15}; do
 	generate_file src/side-$i.asy piece side $i
 	
 	for j in {1..15}; do
-		generate_file src/base-$i-$j.asy piece base $i $j
+		if [ $j -le $i ]; then
+			generate_file src/base-$i-$j.asy piece base $i $j
+		fi
 	done
 done
 
