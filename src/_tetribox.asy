@@ -71,16 +71,12 @@ path fix_corners(path p) {
 				line l1 = line(a, b);
 				line l2 = line(b, c);
 				real angle = modulo(angle(l2.u) - angle(l1.u), 2 * pi);
-				real radius = angle < pi ? settings.convex_corner_radius : settings.concave_corner_radius;
+				real radius = angle < pi ? settings.convex_corner_radius : -settings.concave_corner_radius;
 				
 				pair new_point_1 = l1.B - l1.u * radius;
 				pair new_point_2 = l2.A + l2.u * radius;
-
-				if (angle < pi) {
-					new_points = new_point_1 {l1.u} .. {l2.u} new_point_2;
-				} else {
-					new_points = new_point_1 {l1.v + l1.u} .. tension 0.75 .. {(-l2.v + l2.u)} new_point_2;
-				}
+				
+				new_points = new_point_1 {l1.u} .. {l2.u} new_point_2;
 			}
 		}
 		
