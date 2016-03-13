@@ -1,8 +1,8 @@
 
-int[] range(int start, int end) {
+int[] range(int start, int end, int step=1) {
 	int[] res;
 	
-	for (int i = start; i < end; i += 1) {
+	for (int i = start; i < end; i += step) {
 		res.push(i);
 	}
 	
