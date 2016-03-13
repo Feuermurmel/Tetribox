@@ -20,3 +20,8 @@ real convex_corner_radius = 0.5mm;
 real concave_corner_radius = 0.2mm;
 
 pen cut_pen = .01mm + blue;
+
+// Holder
+real t = height/2; // Slot depth, center of the holder hole
+real d = 6.5mm; // Half the slot width
+real r = 7.5mm; // Radius of the holder hole
