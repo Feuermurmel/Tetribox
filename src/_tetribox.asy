@@ -105,6 +105,10 @@ struct Piece {
 		this.p = this.p -- grid * settings.grid_size + (0, height) * settings.height + wood * settings.wood_thickness + hstud * settings.horizontal_studs_size + (0, vstud) * settings.vertical_studs_size + (slot_gap, 0) * settings.slot_gap;
 	}
 	
+	void add_subpath(path q) {
+		this.p = this.p -- q;
+	}
+	
 	void output() {
 		path p = this.p;
 		
