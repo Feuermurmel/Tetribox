@@ -33,7 +33,7 @@ piece() {
 	echo "$1($(join ', ' "${@:2}"));"
 }
 
-for i in {1..15}; do
+for i in {1..14}; do
 	generate_file src/divider-$i.asy piece divider $i
 	
 	if [ $[$i % 2] -eq 0 ]; then
@@ -43,7 +43,7 @@ for i in {1..15}; do
 		generate_file src/side-$i.asy piece side $i 0
 	fi
 	
-	for j in {1..15}; do
+	for j in {1..11}; do
 		if [ $j -le $i ]; then
 			generate_file src/base-$i-$j.asy piece base $i $j
 		fi
