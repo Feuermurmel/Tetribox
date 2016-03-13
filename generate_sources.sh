@@ -48,6 +48,8 @@ for i in {1..14}; do
 			generate_file src/base-$i-$j.asy piece base $i $j
 		fi
 	done
+
+	generate_file src/holder-$i.asy piece holder $i
 done
 
 # Call generate_file for each file to be generated.
