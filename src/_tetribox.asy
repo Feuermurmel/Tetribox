@@ -116,7 +116,7 @@ struct Piece {
 			p = p -- cycle;
 		}
 		
-		p = fix_corners(offset_path(p, settings.laser_offset));
+		//p = fix_corners(offset_path(p, settings.laser_offset));
 		
 		draw(p, settings.cut_pen);
 	}
