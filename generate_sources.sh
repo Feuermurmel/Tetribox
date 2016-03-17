@@ -49,7 +49,10 @@ for i in {1..14}; do
 		fi
 	done
 
-	generate_file src/holder-$i.asy piece holder $i
+	if [ $i -ge 2 ]; then
+		generate_file src/holder-$i-a.asy piece holder $i 0
+		generate_file src/holder-$i-b.asy piece holder $i 1
+	fi
 done
 
 # Call generate_file for each file to be generated.
