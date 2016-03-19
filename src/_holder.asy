@@ -24,14 +24,14 @@ void holder(int size, int parity) {
 	for (int i : reverse(range(1, size))) {
 		if (i % 2 == parity) {
 			// Holder slot
-			pair x = (i,0) * tetribox.settings.grid_size + (0, 1) * tetribox.settings.height;
-			pair xl = x - tetribox.settings.d * (1,0);
-			pair xr = x + tetribox.settings.d * (1,0);
-			pair xc = (i,0) * tetribox.settings.grid_size + (0, 0.5) * tetribox.settings.height;
+			pair x = (i, 0) * tetribox.settings.grid_size + tetribox.settings.wood_thickness/2 + (0, 1) * tetribox.settings.height;
+			pair xl = x - tetribox.settings.d * (1, 0);
+			pair xr = x + tetribox.settings.d * (1, 0);
+			pair xc = x - (0, 0.5) * tetribox.settings.height;
 			pair xs = xr - (0, tetribox.settings.t - tetribox.settings.r*cos(phi));
 			pair xe = xl - (0, tetribox.settings.t - tetribox.settings.r*cos(phi));
 			
-			path q = xr -- xs -- arc(xc, tetribox.settings.r, degrees(pi/2-phi), degrees(pi/2 + phi), false) -- xe -- xl;
+			path q = xr -- xs -- arc(xc, tetribox.settings.r, degrees(pi/2 - phi), degrees(pi/2 + phi), false) -- xe -- xl;
 			p.add_subpath(q);
 		} else {
 			// Normal slot
