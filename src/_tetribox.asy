@@ -95,6 +95,29 @@ path fix_corners(path p) {
 }
 
 
+path linearize_path(path p) {
+	path res;
+	
+	for (int i : range(0, size(p))) {
+		if (!straight(p, i)) {
+			int steps = 20;
+			
+			for (int j : range(1, steps)) {
+				res = res -- point(p, i + j / steps);
+			}
+		}
+		
+		res = res -- point(p, i + 1);
+	}
+	
+	if (cyclic(p)) {
+		res = res -- cycle;
+	}
+	
+	return res;
+}
+
+
 struct Piece {
 	path p;
 	
@@ -112,7 +135,7 @@ struct Piece {
 			p = p -- cycle;
 		}
 		
-		p = fix_corners(offset_path(p, settings.laser_offset));
+		p = fix_corners(offset_path(linearize_path(p), settings.laser_offset));
 		
 		draw(p, settings.cut_pen);
 	}
