@@ -20,3 +20,8 @@ real convex_corner_radius = 0.5mm;
 real concave_corner_radius = 0.2mm;
 
 pen cut_pen = .01mm + blue;
+
+// Holes in the sides
+real hole_top_offset = 15mm;
+real hole_slot_offset = 2mm;
+real hole_radius = 4mm;

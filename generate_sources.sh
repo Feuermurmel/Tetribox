@@ -37,10 +37,15 @@ for i in {1..14}; do
 	generate_file src/divider-$i.asy piece divider $i
 	
 	if [ $[$i % 2] -eq 0 ]; then
-		generate_file src/side-$i-a.asy piece side $i 0
-		generate_file src/side-$i-b.asy piece side $i 1
+		generate_file src/side-$i-a.asy piece side $i 0 false
+		generate_file src/side-$i-b.asy piece side $i 1 false
+		
+		generate_file src/side-$i-a-holes.asy piece side $i 0 true
+		generate_file src/side-$i-b-holes.asy piece side $i 1 true
 	else
-		generate_file src/side-$i.asy piece side $i 0
+		generate_file src/side-$i.asy piece side $i 0 false
+		
+		generate_file src/side-$i-holes.asy piece side $i 0 true
 	fi
 	
 	for j in {1..11}; do
