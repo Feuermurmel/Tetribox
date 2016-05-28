@@ -57,6 +57,7 @@ path fix_corners(path p) {
 		pair a = point(p, i - 1);
 		pair b = point(p, i);
 		pair c = point(p, i + 1);
+		real min_dist = min(abs(b - a), abs(c - b));
 		
 		path new_points;
 		
@@ -75,11 +76,19 @@ path fix_corners(path p) {
 				if (angle < pi) {
 					real r = settings.convex_corner_radius;
 					
-					new_points = l1.B - l1.u * r {l1.u} .. {l2.u} l2.A + l2.u * r;
+					if (min_dist < 2 * r) {
+						new_points = b;
+					} else {
+						new_points = l1.B - l1.u * r {l1.u} .. {l2.u} l2.A + l2.u * r;
+					}
 				} else {
 					real r = settings.concave_corner_radius;
 					
-					new_points = (l1.B - l1.u * r) .. controls (l1.B + l1.u * r) and (l2.A - l2.u * r) .. (l2.A + l2.u * r);
+					if (min_dist < 2 * r) {
+						new_points = b;
+					} else {
+						new_points = (l1.B - l1.u * r) .. controls (l1.B + l1.u * r) and (l2.A - l2.u * r) .. (l2.A + l2.u * r);
+					}
 				}
 			}
 		}
