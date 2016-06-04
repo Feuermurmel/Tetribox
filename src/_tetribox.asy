@@ -133,8 +133,8 @@ struct Piece {
 	void operator init() {
 	}
 	
-	pair position(pair grid = (0, 0), real height = 0, pair wood = (0, 0), pair hstud = (0, 0), real vstud = 0, real slot_gap = 0, pair offset = (0, 0)) {
-		return grid * settings.grid_size + (0, height) * settings.height + wood * settings.wood_thickness + hstud * settings.horizontal_studs_size + (0, vstud) * settings.vertical_studs_size + (slot_gap, 0) + offset;
+	pair position(pair grid = (0, 0), real height = 0, pair wood = (0, 0), pair hstud = (0, 0), real vstud = 0, real slot_gap = 0, pair overlap = (0, 0), pair offset = (0, 0)) {
+		return grid * settings.grid_size + (0, height) * settings.height + wood * settings.wood_thickness + hstud * settings.horizontal_studs_size + (0, vstud) * settings.vertical_studs_size + (slot_gap, 0) + overlap * settings.tenon_overlap + offset;
 	}
 	
 	void add(pair grid = (0, 0), real height = 0, pair wood = (0, 0), pair hstud = (0, 0), real vstud = 0, real slot_gap = 0, pair offset = (0, 0)) {
@@ -156,12 +156,17 @@ struct Piece {
 
 
 struct TenonPosition {
+	// Position along the edge where the tenons are placed, in units of the grid length (or the height of a side in case of tenons at a vertical edge.)
 	real u;
+	// Position perpendicular to the edge, from 0 to 1.
 	real v;
+	// Direction along the edge on which the tenons are placed which is "outside" of the final shape.
+	real o;
 	
-	void operator init(real u, real v) {
+	void operator init(real u, real v, real o) {
 		this.u = u;
 		this.v = v;
+		this.o = o;
 	}
 }
 
@@ -183,10 +188,20 @@ TenonPosition[] horizontal_tenons(int size, bool reverse = false) {
 	
 	for (int i : range(0, size)) {
 		for (int j : range(0, settings.horizontal_fingers_per_grid)) {
-			int parity = j % 2;
-			
 			for (int k : range(0, 2)) {
-				res.push(TenonPosition(i + j / settings.horizontal_fingers_per_grid, (j + k + 1) % 2));
+				real o;
+				
+				if (i + j == 0) {
+					o = 0;
+				} else {
+					o = j % 2 * 2 - 1;
+				}
+				
+				res.push(
+					TenonPosition(
+						i + j / settings.horizontal_fingers_per_grid,
+						(j + k + 1) % 2,
+						o));
 			}
 		}
 	}
@@ -203,10 +218,20 @@ TenonPosition[] vertical_tenons(bool reverse = false) {
 	TenonPosition[] res;
 	
 	for (int i : range(1, settings.vertical_fingers + 1)) {
-		int parity = i % 2;
-		
 		for (int j : range(0, 2)) {
-			res.push(TenonPosition(i / settings.vertical_fingers, (i + j + 1) % 2));
+			real o;
+			
+			if (i == settings.vertical_fingers && j == 0) {
+				o = 0;
+			} else {
+				o = (i + 1) % 2 * 2 - 1;
+			}
+			
+			res.push(
+				TenonPosition(
+					i / settings.vertical_fingers,
+					(i + j + 1) % 2,
+					o));
 		}
 	}
 	

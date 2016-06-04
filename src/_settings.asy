@@ -11,7 +11,10 @@ real horizontal_studs_size = 1.5 * wood_thickness;
 real vertical_studs_size = 1.5 * wood_thickness;
 
 // Added on all sides to compensate material removed by the laser.
-real laser_offset = .18mm;
+real laser_offset = .05mm;
+
+// Added between tenons to make them interlock.
+real tenon_overlap = .13mm;
 
 // Removed between sides.
 real slot_gap = .1mm;

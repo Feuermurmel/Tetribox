@@ -7,19 +7,19 @@ void base(int sizex, int sizey) {
 	tetribox.Piece p = tetribox.Piece();
 	
 	for (tetribox.TenonPosition j : tetribox.horizontal_tenons(sizex)) {
-		p.add(grid = (j.u, 0), height = 0, wood = (1, j.v), hstud = (0, 0), vstud = 0, slot_gap = 0);
+		p.add(grid = (j.u, 0), height = 0, wood = (1, j.v), hstud = (0, 0), vstud = 0, slot_gap = 0, offset = j.o * E);
 	}
 	
 	for (tetribox.TenonPosition j : tetribox.horizontal_tenons(sizey)) {
-		p.add(grid = (sizex, j.u), height = 0, wood = (1 - j.v, 1), hstud = (0, 0), vstud = 0, slot_gap = 0);
+		p.add(grid = (sizex, j.u), height = 0, wood = (1 - j.v, 1), hstud = (0, 0), vstud = 0, slot_gap = 0, offset = j.o * N);
 	}
 	
 	for (tetribox.TenonPosition j : tetribox.horizontal_tenons(sizex)) {
-		p.add(grid = (sizex - j.u, sizey), height = 0, wood = (0, 1 - j.v), hstud = (0, 0), vstud = 0, slot_gap = 0);
+		p.add(grid = (sizex - j.u, sizey), height = 0, wood = (0, 1 - j.v), hstud = (0, 0), vstud = 0, slot_gap = 0, offset = j.o * W);
 	}
 	
 	for (tetribox.TenonPosition j : tetribox.horizontal_tenons(sizey)) {
-		p.add(grid = (0, sizey - j.u), height = 0, wood = (j.v, 0), hstud = (0, 0), vstud = 0, slot_gap = 0);
+		p.add(grid = (0, sizey - j.u), height = 0, wood = (j.v, 0), hstud = (0, 0), vstud = 0, slot_gap = 0, offset = j.o * S);
 	}
 	
 	p.output();
