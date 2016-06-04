@@ -134,7 +134,7 @@ struct Piece {
 	}
 	
 	pair position(pair grid = (0, 0), real height = 0, pair wood = (0, 0), pair hstud = (0, 0), real vstud = 0, real slot_gap = 0, pair overlap = (0, 0), pair offset = (0, 0)) {
-		return grid * settings.grid_size + (0, height) * settings.height + wood * settings.wood_thickness + hstud * settings.horizontal_studs_size + (0, vstud) * settings.vertical_studs_size + (slot_gap, 0) + overlap * settings.tenon_overlap + offset;
+		return grid * settings.grid_size + (0, height) * settings.height + wood * settings.wood_thickness + hstud * settings.horizontal_studs_size + (0, vstud) * settings.vertical_studs_size + (slot_gap, 0) * settings.slot_gap + overlap * settings.tenon_overlap + offset;
 	}
 	
 	void add(pair grid = (0, 0), real height = 0, pair wood = (0, 0), pair hstud = (0, 0), real vstud = 0, real slot_gap = 0, pair offset = (0, 0)) {
