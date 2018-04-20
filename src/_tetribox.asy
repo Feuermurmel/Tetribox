@@ -74,13 +74,9 @@ path fix_corners(path p) {
 				real angle = modulo(angle(l2.u) - angle(l1.u), 2 * pi);
 				
 				if (angle < pi) {
-					real r = settings.convex_corner_radius;
+					real r = min(min_dist / 2, settings.convex_corner_radius);
 					
-					if (min_dist < 2 * r) {
-						new_points = b;
-					} else {
-						new_points = l1.B - l1.u * r {l1.u} .. {l2.u} l2.A + l2.u * r;
-					}
+					new_points = l1.B - l1.u * r {l1.u} .. {l2.u} l2.A + l2.u * r;
 				} else {
 					real r = settings.concave_corner_radius;
 					
